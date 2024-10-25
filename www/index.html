@@ -159,6 +159,7 @@
     var period = 0; 
     var rest = 0;
     var etime = 0;
+    var time = 0;
 
 
     
@@ -188,6 +189,7 @@
     function btnAClick(e){
         active = true;
         startTime = new Date();
+        time = 0;
 
 
     }
@@ -195,13 +197,17 @@
     // ButtonBがクリックされた時の処理
     function btnBClick(e){
         active = false; 
+        time = etime;
         
         
     }
 
     // ButtonCがクリックされた時の処理
     function btnCClick(e){
-        active = false;
+        if (!active) {
+            active = true;
+            startTime = new Date() - time * 1000;
+        }
         
     }
     // ButtonDがクリックされた時の処理
@@ -246,7 +252,7 @@
     <div id="time">Time</div>
     <button id="btnA">Start</button>  
     <button id="btnB">Stop</button>  
-    <button id="btnC">btnC</button> 
+    <button id="btnC">Restart</button> 
     <button id="btnD">Set</button> 
     <input type="number" id="minute" value=0 >
     <input type="number" id="second" value=15 >
